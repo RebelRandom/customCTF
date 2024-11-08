@@ -99,7 +99,7 @@
     async function loadExternalHTML() {
       try {
         // Fetch the external HTML file
-        const response = await fetch('external.html');
+        const response = await fetch('flag');
         
         // Convert the response to text
         const text = await response.text();
@@ -118,3 +118,9 @@
     }
     window.onload = loadExternalHTML;
   </script>
+<body>
+  <div id="output">
+    <!-- Extracted content will appear here -->
+  </div>
+  
+</body>
