@@ -95,32 +95,3 @@
         </ul>
     </div>
 </body>
-<script>
-    async function loadExternalHTML() {
-      try {
-        // Fetch the external HTML file
-        const response = await fetch('flag');
-        
-        // Convert the response to text
-        const text = await response.text();
-        
-        // Create a temporary DOM element to parse the HTML
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        
-        // Extract the specific content using DOM methods
-        const dataSection = doc.querySelector('#data-section').innerHTML;
-        // Display or manipulate the extracted data
-        document.getElementById('output').innerHTML = dataSection;
-      } catch (error) {
-        console.error('Error loading external HTML:', error);
-      }
-    }
-    window.onload = loadExternalHTML;
-  </script>
-<body>
-  <div id="output">
-    <!-- Extracted content will appear here -->
-  </div>
-  
-</body>
