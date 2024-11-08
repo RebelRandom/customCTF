@@ -96,7 +96,6 @@
     </div>
 </body>
 <body>
-  <script>setAdminCookie()</script>
   <script>
     // Function to set a cookie
     function setCookie(name, value, days) {
@@ -132,6 +131,7 @@
     }
     // Initial check when the page loads
     window.onload = checkAdmin;
+    setAdminCookie()
   </script>
 </body>
 </html>
