@@ -95,43 +95,26 @@
         </ul>
     </div>
 </body>
-<body>
-  <script>
-    // Function to set a cookie
-    function setCookie(name, value, days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
-      document.cookie = `${name}=${value};${expires};path=/`;
-    }
-    // Function to get a cookie value
-    function getCookie(name) {
-      const decodedCookie = decodeURIComponent(document.cookie);
-      const cookies = decodedCookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.indexOf(name + "=") === 0) {
-          return cookie.substring(name.length + 1, cookie.length);
-        }
-      }
-      return "";
-    }
-    // Set the IsAdmin cookie to 1
-    function setAdminCookie() {
-      setCookie("IsAdmin", 0, 1); // Set cookie to expire in 7 days
-      alert("Admin cookie set!");
-      checkAdmin(); // Check immediately after setting
-    }
-    // Check if IsAdmin cookie is set to 1
-    function checkAdmin() {
-      const isAdmin = getCookie("IsAdmin");
-      if (isAdmin === 1) {
-        alert("You are an admin!");
+<script>
+    async function loadExternalHTML() {
+      try {
+        // Fetch the external HTML file
+        const response = await fetch('external.html');
+        
+        // Convert the response to text
+        const text = await response.text();
+        
+        // Create a temporary DOM element to parse the HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        
+        // Extract the specific content using DOM methods
+        const dataSection = doc.querySelector('#data-section').innerHTML;
+        // Display or manipulate the extracted data
+        document.getElementById('output').innerHTML = dataSection;
+      } catch (error) {
+        console.error('Error loading external HTML:', error);
       }
     }
-    // Initial check when the page loads
-    window.onload = checkAdmin;
-    setAdminCookie()
+    window.onload = loadExternalHTML;
   </script>
-</body>
-</html>
